@@ -3,128 +3,80 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>商品券集計表</title>
+  <title>商品券集計</title>
   <style>
     body {
       font-family: sans-serif;
       padding: 20px;
-      margin: 0;
-      background-color: #f9f9f9;
-    }
-    h2 {
-      text-align: center;
     }
     table {
       width: 100%;
       border-collapse: collapse;
-      background: white;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     }
     th, td {
-      border: 1px solid #ddd;
-      padding: 12px;
+      padding: 8px;
       text-align: center;
     }
-    th {
-      background-color: #f0f0f0;
-    }
     input[type="number"] {
-      width: 100%;
-      padding: 6px;
-      box-sizing: border-box;
+      width: 80px;
       text-align: right;
+      font-size: 16px;
     }
-    .total {
+    td.total {
       font-weight: bold;
-      background-color: #fafafa;
-    }
-
-    @media (max-width: 600px) {
-      table, thead, tbody, th, td, tr {
-        display: block;
-      }
-      thead tr {
-        display: none;
-      }
-      tr {
-        margin-bottom: 15px;
-        border-bottom: 2px solid #ccc;
-      }
-      td {
-        text-align: right;
-        padding-left: 50%;
-        position: relative;
-      }
-      td::before {
-        content: attr(data-label);
-        position: absolute;
-        left: 10px;
-        width: 45%;
-        white-space: nowrap;
-        text-align: left;
-        font-weight: bold;
-      }
+      background-color: #f0f0f0;
     }
   </style>
 </head>
 <body>
-  <h2>商品券集計表</h2>
+  <h2>商品券集計</h2>
   <table>
-    <thead>
-      <tr>
-        <th>金額</th>
-        <th>枚数</th>
-        <th>金額合計</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td data-label="金額">200円</td>
-        <td data-label="枚数"><input type="number" id="count200" value="0" min="0" oninput="calculate()"></td>
-        <td data-label="金額合計"><span id="total200">0</span> 円</td>
-      </tr>
-      <tr>
-        <td data-label="金額">500円</td>
-        <td data-label="枚数"><input type="number" id="count500" value="0" min="0" oninput="calculate()"></td>
-        <td data-label="金額合計"><span id="total500">0</span> 円</td>
-      </tr>
-      <tr>
-        <td data-label="金額">1000円</td>
-        <td data-label="枚数"><input type="number" id="count1000" value="0" min="0" oninput="calculate()"></td>
-        <td data-label="金額合計"><span id="total1000">0</span> 円</td>
-      </tr>
-      <tr class="total">
-        <td colspan="2" data-label="合計金額">合計金額</td>
-        <td data-label="金額"><span id="grandTotal">0</span> 円</td>
-      </tr>
-      <tr class="total">
-        <td colspan="2" data-label="合計枚数">合計枚数</td>
-        <td data-label="枚数"><span id="totalCount">0</span> 枚</td>
-      </tr>
-    </tbody>
+    <tr>
+      <th>金額</th>
+      <th>枚数</th>
+      <th>合計</th>
+    </tr>
+    <tr>
+      <td>200円</td>
+      <td><input type="number" id="count200" placeholder="枚数" oninput="calculate()"></td>
+      <td id="total200">0</td>
+    </tr>
+    <tr>
+      <td>500円</td>
+      <td><input type="number" id="count500" placeholder="枚数" oninput="calculate()"></td>
+      <td id="total500">0</td>
+    </tr>
+    <tr>
+      <td>1000円</td>
+      <td><input type="number" id="count1000" placeholder="枚数" oninput="calculate()"></td>
+      <td id="total1000">0</td>
+    </tr>
+    <tr>
+      <td class="total">合計</td>
+      <td class="total" id="totalCount">0</td>
+      <td class="total" id="grandTotal">0</td>
+    </tr>
   </table>
 
   <script>
     function calculate() {
-      const count200 = parseInt(document.getElementById("count200").value) || 0;
-      const count500 = parseInt(document.getElementById("count500").value) || 0;
-      const count1000 = parseInt(document.getElementById("count1000").value) || 0;
+      const count200 = Number(document.getElementById("count200").value) || 0;
+      const count500 = Number(document.getElementById("count500").value) || 0;
+      const count1000 = Number(document.getElementById("count1000").value) || 0;
 
       const total200 = count200 * 200;
       const total500 = count500 * 500;
       const total1000 = count1000 * 1000;
 
-      const grandTotal = total200 + total500 + total1000;
       const totalCount = count200 + count500 + count1000;
+      const grandTotal = total200 + total500 + total1000;
 
       document.getElementById("total200").textContent = total200;
       document.getElementById("total500").textContent = total500;
       document.getElementById("total1000").textContent = total1000;
-      document.getElementById("grandTotal").textContent = grandTotal;
       document.getElementById("totalCount").textContent = totalCount;
+      document.getElementById("grandTotal").textContent = grandTotal;
     }
-
-    calculate();
   </script>
 </body>
 </html>
