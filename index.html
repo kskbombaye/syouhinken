@@ -52,31 +52,10 @@
       <td id="total1000">0</td>
     </tr>
     <tr>
-      <td class="total">合計</td>
-      <td class="total" id="totalCount">0</td>
-      <td class="total" id="grandTotal">0</td>
+      <td>5000円</td>
+      <td><input type="number" id="count5000" placeholder="枚数" oninput="calculate()"></td>
+      <td id="total5000">0</td>
     </tr>
-  </table>
-
-  <script>
-    function calculate() {
-      const count200 = Number(document.getElementById("count200").value) || 0;
-      const count500 = Number(document.getElementById("count500").value) || 0;
-      const count1000 = Number(document.getElementById("count1000").value) || 0;
-
-      const total200 = count200 * 200;
-      const total500 = count500 * 500;
-      const total1000 = count1000 * 1000;
-
-      const totalCount = count200 + count500 + count1000;
-      const grandTotal = total200 + total500 + total1000;
-
-      document.getElementById("total200").textContent = total200;
-      document.getElementById("total500").textContent = total500;
-      document.getElementById("total1000").textContent = total1000;
-      document.getElementById("totalCount").textContent = totalCount;
-      document.getElementById("grandTotal").textContent = grandTotal;
-    }
-  </script>
-</body>
-</html>
+    <tr>
+      <td>10000円</td>
+      <td><input type="number" id="count10000" placeholder="枚数" oninput="calculate
