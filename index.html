@@ -58,4 +58,41 @@
     </tr>
     <tr>
       <td>10000円</td>
-      <td><input type="number" id="count10000" placeholder="枚数" oninput="calculate
+      <td><input type="number" id="count10000" placeholder="枚数" oninput="calculate()"></td>
+      <td id="total10000">0</td>
+    </tr>
+    <tr>
+      <td class="total">合計</td>
+      <td class="total" id="totalCount">0</td>
+      <td class="total" id="grandTotal">0</td>
+    </tr>
+  </table>
+
+  <script>
+    function calculate() {
+      const count200 = Number(document.getElementById("count200").value) || 0;
+      const count500 = Number(document.getElementById("count500").value) || 0;
+      const count1000 = Number(document.getElementById("count1000").value) || 0;
+      const count5000 = Number(document.getElementById("count5000").value) || 0;
+      const count10000 = Number(document.getElementById("count10000").value) || 0;
+
+      const total200 = count200 * 200;
+      const total500 = count500 * 500;
+      const total1000 = count1000 * 1000;
+      const total5000 = count5000 * 5000;
+      const total10000 = count10000 * 10000;
+
+      const totalCount = count200 + count500 + count1000 + count5000 + count10000;
+      const grandTotal = total200 + total500 + total1000 + total5000 + total10000;
+
+      document.getElementById("total200").textContent = total200.toLocaleString();
+      document.getElementById("total500").textContent = total500.toLocaleString();
+      document.getElementById("total1000").textContent = total1000.toLocaleString();
+      document.getElementById("total5000").textContent = total5000.toLocaleString();
+      document.getElementById("total10000").textContent = total10000.toLocaleString();
+      document.getElementById("totalCount").textContent = totalCount.toLocaleString();
+      document.getElementById("grandTotal").textContent = grandTotal.toLocaleString();
+    }
+  </script>
+</body>
+</html>
